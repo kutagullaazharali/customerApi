@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.samplenew.modal.Customer1;
 import com.example.samplenew.service.CustomerService;
+
+@CrossOrigin(origins = "http://localhost:3000")
 
 @RestController
 @RequestMapping("/api/customers")
