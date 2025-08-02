@@ -5,7 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.Setter;
+@Setter
+@Getter
 @Entity
 @Table(name = "customer")
 public class Customer1
@@ -37,49 +40,5 @@ public class Customer1
         this.password = password;
         this.role = role;
         this.username = username;
-    }
-
-    public Customer1(String name, String password, String username) {
-        this.name = name;
-        this.password = password;
-        this.username = username;
-    }
-
-    // Getters & Setters
-    public Long getId() { return id; }
-
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getUsername() {
-        // Accessing username to ensure it's read
-        return username;
     }
 }
