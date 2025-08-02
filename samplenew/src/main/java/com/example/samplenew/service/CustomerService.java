@@ -36,7 +36,20 @@ public class CustomerService {
             return customerEmail != null && customerEmail.equals(email);
         })
         .findFirst()
-        .orElse(null); 
+        .orElseThrow( () -> new ResourceNotFoundException("by this email none of the customers are exists") ); 
+    }
+    public Customer1 getCustomerByName(String name){
+        if(name==null || name.isEmpty()){
+            throw new ResourceNotFoundException("by this name user is not exits");
+        }
+        Customer1 customer = customerRepository.findAllByName(name);
+        if(customer == null){
+            throw new ResourceNotFoundException("by this name user is not exits in the system");
+        }
+        else
+        {
+            return customer;
+        }
     }
 
     // Create a new customer

@@ -39,6 +39,10 @@ public class CustomerController {
     public Customer1 getCustomerByEmail(@PathVariable String email){
         return customerService.getCustomerByEmail(email);
     }
+     @GetMapping("name/{name}")
+    public Customer1 getCustomerByName(@PathVariable String name) {
+        return customerService.getCustomerByName(name);
+    }
     // POST create new customer
     @PostMapping
     public Customer1 createCustomer(@RequestBody Customer1 customer) {
