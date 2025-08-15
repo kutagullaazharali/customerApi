@@ -51,12 +51,6 @@ public class CustomerController {
     public Customer1 createCustomer(@RequestBody Customer1 customer) {
         return customerService.createCustomer(customer);
     }
-    @PostMapping("/bulk")
-    public List<Customer1> CreateAllCustimers(@RequestBody List<Customer1> customer){
-        return customerService.CreateAllCustomers(customer);
-    }
-   
-    
     @DeleteMapping("/{id}")
     public Customer1 deleteCustomer(@PathVariable Long id) {
         // customerService.getCustomerById(id);
