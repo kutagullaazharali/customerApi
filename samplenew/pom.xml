@@ -46,11 +46,11 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Lombok -->
+    <!-- Lombok (managed version = 1.18.28 from Spring Boot BOM) -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <optional>true</optional>
+      <scope>provided</scope>
     </dependency>
 
     <!-- DevTools -->
@@ -62,11 +62,10 @@
     </dependency>
 
     <!-- Swagger/OpenAPI -->
-   
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-     <version>2.5.0</version>
+      <version>2.5.0</version>
     </dependency>
 
     <!-- Testing -->
@@ -93,6 +92,7 @@
             <path>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
+              <!-- No version needed, managed by Spring Boot -->
             </path>
           </annotationProcessorPaths>
         </configuration>

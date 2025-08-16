@@ -12,10 +12,10 @@ export default function GetAllCustomers() {
         setCustomers(data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error("Error fetching customers:", error);
+      .catch(err => {
+        // console.error("Error fetching customers:", err);
         setLoading(false);
-      });
+      })
   };
 
   return (
@@ -27,11 +27,13 @@ export default function GetAllCustomers() {
       {loading && <p>Loading...</p>}
 
       {/* Show table only if customers exist */}
+      {/* {console.log(customers,"All the customers data")} */}
       {customers.length > 0 && (
+        
         <table border="1">
           <thead>
             <tr>
-              <th>ID</th><th>Name</th><th>Email</th><th>Address</th>
+              <th>ID</th><th>Name</th><th>Email</th><th>Address</th><th>Role</th><th>username</th><th>createdAt</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +43,9 @@ export default function GetAllCustomers() {
                 <td>{customer.name}</td>
                 <td>{customer.email}</td>
                 <td>{customer.address}</td>
+                <td>{customer.role}</td>
+                <td>{customer.username}</td>
+                <td>{customer.createdAt}</td>
               </tr>
             ))}
           </tbody>

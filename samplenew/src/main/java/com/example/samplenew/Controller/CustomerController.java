@@ -43,7 +43,7 @@ public class CustomerController {
         return customerService.getCustomerByEmail(email);
     }
      @GetMapping("name/{name}")
-    public Customer1 getCustomerByName(@PathVariable String name) {
+    public List<Customer1> getCustomerByName(@PathVariable String name) {
         return customerService.getCustomerByName(name);
     }
     // POST create new customer

@@ -30,27 +30,18 @@ public class CustomerService {
         if(email == null || email.isEmpty()) {
             throw new ResourceNotFoundException("Customer email cannot be null or empty or not found" + email);
         }
-        return null;
-        // return customerRepository.findAll().stream()
-        // .filter(customer -> {
-        //     String customerEmail = customer.getEmail();
-        //     return customerEmail != null && customerEmail.equals(email);
-        // })
-        // .findFirst()
-        // .orElseThrow( () -> new ResourceNotFoundException("by this email none of the customers are exists") ); 
+        return customerRepository.findAll().stream()
+        .filter(customer -> {
+            String customerEmail = customer.getEmail();
+            return customerEmail != null && customerEmail.equals(email);
+        })
+        .findFirst()
+        .orElseThrow( () -> new ResourceNotFoundException("by this email none of the customers are exists") ); 
     }
-    public Customer1 getCustomerByName(String name){
-        if(name==null || name.isEmpty()){
-            throw new ResourceNotFoundException("by this name user is not exits");
-        }
-        Customer1 customer = customerRepository.findAllByName(name);
-        if(customer == null){
-            throw new ResourceNotFoundException("by this name user is not exits in the system");
-        }
-        else
-        {
-            return customer;
-        }
+    public List<Customer1> getCustomerByName(String name){
+       
+        return customerRepository.findAllByName(name);
+        
     }
 
     // Create a new customer

@@ -41,7 +41,9 @@ public class Customer1
         this.name = name;
         this.email = email;
     }
-
+    public String getEmail(){
+        return this.email;
+    }
     public Customer1(String address, String email, Long id, String name, String password, String role, String username) {
         this.address = address;
         this.email = email;
@@ -50,5 +52,6 @@ public class Customer1
         this.password = password;
         this.role = role;
         this.username = username;
+        this.email =email;
     }
 }
