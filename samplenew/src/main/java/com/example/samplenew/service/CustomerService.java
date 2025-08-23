@@ -1,6 +1,7 @@
 package com.example.samplenew.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,15 @@ public class CustomerService {
 
     // Get customer by ID
     public Customer1 getCustomerById(Long id) {
-        return customerRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Customer not found " ));
+        // return customerRepository.findById(id)
+        //     .orElseThrow(() -> new ResourceNotFoundException("Customer not found " ));
+        Optional<Customer1> customer = customerRepository.findById(id);
+        if(customer.isPresent()){
+            return customer.get();
+        }
+        else{
+            throw new ResourceNotFoundException("Customer not found ");
+        }
     }
 
     public Customer1 getCustomerByEmail(String email) {
@@ -51,14 +59,14 @@ public class CustomerService {
     public List<Customer1> CreateAllCustomers(List<Customer1> customer){
         return customerRepository.saveAll(customer);
     }
-    public Customer1 deleteCustomer(long id) {
+    public String deleteCustomer(long id) {
         Customer1 customer = getCustomerById(id);
         if (customer == null) {
             // throw new RuntimeException("Customer not found with id " + id);
-            System.out.println("Customer not found with id or you doesn't to delete this id" + id);
+            // System.out.println("Customer not found with id or you doesn't to delete this id" + id);
            throw new ResourceNotFoundException("Customer not found with id " + id); 
         }
         customerRepository.delete(customer);
-        return customer;
+        return "Deleted the user successfully..."+id;
     }
 }
