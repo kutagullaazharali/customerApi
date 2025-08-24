@@ -8,13 +8,25 @@ import org.springframework.stereotype.Service;
 
 import com.example.samplenew.exception.ResourceNotFoundException;
 import com.example.samplenew.modal.Customer1;
+import com.example.samplenew.modal.User;
 import com.example.samplenew.repository.CustomerRepository;
-
 @Service
 public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+   
+    public String SearchUser(String email){
+          return customerRepository.findAll().stream()
+        .filter(customer -> {
+            String customerEmail = customer.getEmail();
+            return customerEmail != null && customerEmail.equals(email);
+        })
+        .findFirst()
+        .map(Customer1::getEmail)
+        .orElseThrow(() -> new ResourceNotFoundException("by this email none of the customers are exists"));
+    }
 
     // Get all customers
     public List<Customer1> getAllCustomers() {

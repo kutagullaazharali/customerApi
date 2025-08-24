@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.samplenew.modal.Customer1;
 import com.example.samplenew.service.CustomerService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin(origins = "http://localhost:3000")
 
