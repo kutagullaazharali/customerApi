@@ -12,22 +12,23 @@ import com.example.samplenew.modal.User;
 public class userService {
 
     @Autowired
-    private UserRepository UserRespository;
+    private UserRepository UserRepository;
 
     public List<User> getallusers(){
         System.out.print("getall the user method was called");
-        return UserRespository.findAll();
+        return UserRepository.findAll();
     }
 
     public String finsUser(String username){
-        List<User> user=UserRespository.findAllByusername(username);
-        if(user==null){
-            return "unauth";
-        }
-        else
-        {
-            return "login successful";
-        }
+        List<User> user=UserRepository.findAll();
+        return "login successful";
     }
+
+    public User saveUser(User user){
+        return UserRepository.save(user);
+    }
+
+
+
 
 }
