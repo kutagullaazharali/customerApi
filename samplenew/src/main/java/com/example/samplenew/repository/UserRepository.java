@@ -8,5 +8,6 @@ import com.example.samplenew.modal.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+     User findByEmailAndPassword(String email, String password);
 
 }

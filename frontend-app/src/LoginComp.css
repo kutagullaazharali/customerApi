@@ -94,7 +94,7 @@
 /* Error / success message */
 .message {
   margin-top: 15px;
-  color: red;
+  color: rgb(6, 232, 18);
   font-size: 14px;
 }
 

@@ -1,34 +1,43 @@
 import React, { useState } from "react";
 import "./LoginComp.css";
+import GetAllCustomers from "./getallcustomers";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isloginin,setisloginin] = useState(true);
 
   const loginUser = async () => {
+    const Creds =`${email}/${password}`; 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }), // <-- sending both email + password
+      const response = await fetch(`http://localhost:8080/api/${Creds}`, {
+        method: "GET",
       });
 
       if (!response.ok) throw new Error("Invalid email or password");
 
-      const data = await response.json();
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
+      const data = await response.text();
+      //localStorage.setItem("accessToken", data.accessToken);
+      //localStorage.setItem("refreshToken", data.refreshToken);
 
-      setMessage("Login successful ✅");
+      setMessage(data);
+      console.log(data,"Data of the api response........");
+      if(data.trim()=="Login Successful"){
+        setisloginin(false);
+      }
     } catch (err) {
       setMessage(err.message);
     }
   };
 
   return (
+     
     <div className="login-container">
+      {isloginin ? (
+        <>
       <div className="login-box">
+       
         {/* Instagram Logo */}
         <h1 className="instagram-logo">Instagram</h1>
 
@@ -73,6 +82,7 @@ const LoginComponent = () => {
           Don’t have an account? <a href="/signup">Sign up</a>
         </p>
       </div>
+      </>):(<GetAllCustomers/>)}
     </div>
   );
 };
