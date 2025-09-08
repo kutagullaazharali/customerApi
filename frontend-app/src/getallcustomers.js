@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import LoginComponent from './loginComponent';
+// import axios from "axios";
+
 
 export default function GetAllCustomers() {
   const [customers, setCustomers] = useState([]);
@@ -17,10 +20,18 @@ export default function GetAllCustomers() {
         setLoading(false);
       })
   };
+  const deleteCustomer = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/customers/${id}`);
+      setCustomers(customers.filter((c) => customers.user_id !== id)); // update UI
+    } catch (error) {
+      console.error("Error deleting customer:", error);
+    }
+  };
 
   return (
     <div>
-      <h2>All Customers</h2>
+      <h2>All Customers</h2>  <button onClick={LoginComponent}>Back</button>
       <button onClick={fetchCustomers}>Get Customers</button>
       <br /><br />
 
@@ -33,7 +44,7 @@ export default function GetAllCustomers() {
         <table border="1">
           <thead>
             <tr>
-              <th>ID</th><th>Name</th><th>Email</th><th>Address</th><th>Role</th><th>username</th><th>createdAt</th>
+              <th>ID</th><th>Name</th><th>Email</th><th>Address</th><th>Role</th><th>username</th><th>createdAt</th><th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -46,6 +57,7 @@ export default function GetAllCustomers() {
                 <td>{customer.role}</td>
                 <td>{customer.username}</td>
                 <td>{customer.createdAt}</td>
+                {/* <button onClick={() => deleteUser(customer.user_id)}><td>Delete</td></button>  */}
               </tr>
             ))}
           </tbody>

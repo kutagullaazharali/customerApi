@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.samplenew.exception.ResourceNotFoundException;
 import com.example.samplenew.modal.Customer1;
-import com.example.samplenew.modal.User;
 import com.example.samplenew.repository.CustomerRepository;
 @Service
 public class CustomerService {

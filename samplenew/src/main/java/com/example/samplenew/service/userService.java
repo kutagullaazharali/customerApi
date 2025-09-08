@@ -7,7 +7,7 @@ import com.example.samplenew.modal.User;
 import com.example.samplenew.repository.UserRepository;
 
 @Service
-public class UserService {
+public class userService {
 
     @Autowired
     private UserRepository userRepository;

@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.samplenew.service.UserService;   // ✅ Use uppercase class name
+import com.example.samplenew.service.userService;   // ✅ Use uppercase class name
 import com.example.samplenew.modal.User;
 @CrossOrigin(origins ="http://localhost:3000")
 
@@ -12,7 +12,7 @@ import com.example.samplenew.modal.User;
 @RequestMapping("/api")
 public class UserController {   // ✅ Class name uppercase
     @Autowired
-    private UserService UserService;   // ✅ Service name uppercase
+    private userService UserService;   // ✅ Service name uppercase
 
     @GetMapping("/login")
     public List<User> getAllUsers() {
