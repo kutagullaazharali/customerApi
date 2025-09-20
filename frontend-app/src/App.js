@@ -1,14 +1,15 @@
-import CustomerList from "./CustomerList";
-import GetAllCustomers from "./getallcustomers";
-import LoginComponent from "./loginComponent"; // 👈 adjust path
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import LoginComponent from "./loginComponent";
+import SignUpForm from "./SignUp";
 
 function App() {
   return (
-    <div className="App">
-        {/* <CustomerList />
-        <GetAllCustomers /> */}
-      <LoginComponent />
-    </div>
+    <Routes>
+      <Route path="/" element={<LoginComponent />} />
+      <Route path="/login" element={<LoginComponent />} />
+      <Route path="/signup" element={<SignUpForm />} />
+    </Routes>
   );
 }
 

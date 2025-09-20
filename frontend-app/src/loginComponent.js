@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LoginComp.css";
 import GetAllCustomers from "./getallcustomers";
+import { Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // ✅ import Link
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -79,7 +81,8 @@ const LoginComponent = () => {
       {/* Signup Box */}
       <div className="signup-box">
         <p>
-          Don’t have an account? <a href="/signup">Sign up</a>
+          Don’t have an account? <Link to="/signup">Sign up</Link>
+
         </p>
       </div>
       </>):(<GetAllCustomers/>)}
