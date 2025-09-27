@@ -17,4 +17,11 @@ public class ProductService {
     public List<Product> getproducts(){
         return productRepository.findAll();
     }
+
+    public List<Product> getproductsByName(String name) {
+        return productRepository.findByName(name);
+    }
+    public Product CreateProduct(Product product) {
+        return productRepository.save(product);
+    }
 }

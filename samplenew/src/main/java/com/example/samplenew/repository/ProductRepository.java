@@ -9,5 +9,6 @@ import com.example.samplenew.modal.Product;
 
 @Repository
 public interface  ProductRepository extends  JpaRepository<Product, Integer>{
-
+    List<Product> findByName(String name);
 }
+
