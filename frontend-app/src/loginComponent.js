@@ -41,7 +41,7 @@ const LoginComponent = () => {
       <div className="login-box">
        
         {/* Instagram Logo */}
-        <h1 className="instagram-logo">Instagram</h1>
+        <h1 className="instagram-logo"> My Application </h1>
 
         {/* Email + Password */}
         <div className="form-group">

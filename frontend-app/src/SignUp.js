@@ -9,12 +9,9 @@ function SignUpForm() {
 
   // useState hook to manage form data (React State)
   const [formData, setFormData] = useState({
-    name: '',
     username: '',
     email: '',
     password: '',
-    address: '',
-    role: 'USER', // default value for role
   });
 
   // handleChange updates the state when user types in the input (Event Handling)
@@ -35,7 +32,7 @@ function SignUpForm() {
 
     try {
       // Fetch API call to backend (HTTP Request)
-      const response = await fetch('http://localhost:8080/api/customers', {
+      const response = await fetch('http://localhost:8080/api/user', {
         method: 'POST', // HTTP POST method
         headers: { 'Content-Type': 'application/json' }, // JSON header
         body: JSON.stringify(dataToSend), // Convert JS object to JSON string
@@ -45,7 +42,7 @@ function SignUpForm() {
         alert('User created successfully!'); // Success message
         navigate('/'); // Redirect to Login page (React Router)
         // Reset form fields
-        setFormData({ name: '', username: '', email: '', password: '', address: '', role: 'USER' });
+        setFormData({  username: '', email: '', password: ''});
       } else {
         alert('Error creating user'); // Error handling
       }
@@ -61,15 +58,6 @@ function SignUpForm() {
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         {/* Controlled Components - input values are tied to React state */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange} // Event handling
-          required
-        /><br /><br />
-        
         <input
           type="text"
           name="username"
@@ -95,14 +83,6 @@ function SignUpForm() {
           value={formData.password}
           onChange={handleChange}
           required
-        /><br /><br />
-
-        <input
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleChange}
         /><br /><br />
 
         {/* Button triggers form submission */}
