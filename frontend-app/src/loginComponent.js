@@ -8,10 +8,13 @@ const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [isloginin,setisloginin] = useState(true);
+  const [isloginin, setisloginin] = useState(true);
 
+  const loginWithfaceboot = () => {
+    document.writeln("Inprogress please wait");
+  }
   const loginUser = async () => {
-    const Creds =`${email}/${password}`; 
+    const Creds = `${email}/${password}`;
     try {
       const response = await fetch(`http://localhost:8080/api/${Creds}`, {
         method: "GET",
@@ -24,8 +27,8 @@ const LoginComponent = () => {
       //localStorage.setItem("refreshToken", data.refreshToken);
 
       setMessage(data);
-      console.log(data,"Data of the api response........");
-      if(data.trim()=="Login Successful"){
+      console.log(data, "Data of the api response........");
+      if (data.trim() == "Login Successful") {
         setisloginin(false);
       }
     } catch (err) {
@@ -34,58 +37,58 @@ const LoginComponent = () => {
   };
 
   return (
-     
+
     <div className="login-container">
       {isloginin ? (
         <>
-      <div className="login-box">
-       
-        {/* Instagram Logo */}
-        <h1 className="instagram-logo"> My Application </h1>
+          <div className="login-box">
 
-        {/* Email + Password */}
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Phone number, username, or email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="input-box"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="input-box"
-          />
-          <button onClick={loginUser} className="login-btn">
-            Log In
-          </button>
-        </div>
+            {/* Instagram Logo */}
+            <h1 className="instagram-logo"> My Application </h1>
 
-        {/* OR Divider */}
-        <div className="divider">
-          <div className="line"></div>
-          <p>OR</p>
-          <div className="line"></div>
-        </div>
+            {/* Email + Password */}
+            <div className="form-group">
+              <input
+                type="email"
+                placeholder="Phone number, username, or email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-box"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-box"
+              />
+              <button onClick={loginUser} className="login-btn">
+                Log In
+              </button>
+            </div>
 
-        {/* Facebook login */}
-        <button className="facebook-login">Log in with Facebook</button>
+            {/* OR Divider */}
+            <div className="divider">
+              <div className="line"></div>
+              <p>OR</p>
+              <div className="line"></div>
+            </div>
 
-        {/* Message */}
-        {message && <p className="message">{message}</p>}
-      </div>
+            {/* Facebook login */}
+            <button className="facebook-login" onClick={loginWithfaceboot}>Log in with Facebook</button>
 
-      {/* Signup Box */}
-      <div className="signup-box">
-        <p>
-          Don’t have an account? <Link to="/signup">Sign up</Link>
+            {/* Message */}
+            {message && <p className="message">{message}</p>}
+          </div>
 
-        </p>
-      </div>
-      </>):(<GetAllCustomers/>)}
+          {/* Signup Box */}
+          <div className="signup-box">
+            <p>
+              Don’t have an account? <Link to="/signup">Sign up</Link>
+
+            </p>
+          </div>
+        </>) : (<GetAllCustomers />)}
     </div>
   );
 };

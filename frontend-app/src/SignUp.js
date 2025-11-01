@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import SuccessModal from './SuccessModal';
 // Functional component (React Component)
 function SignUpForm() {
+  const [showModel, setshowModel] = useState(false);
   // useNavigate is from React Router to programmatically navigate pages
   const navigate = useNavigate();
 
@@ -39,10 +40,11 @@ function SignUpForm() {
       });
 
       if (response.ok) {
-        alert('User created successfully!'); // Success message
-        navigate('/'); // Redirect to Login page (React Router)
+        setshowModel(true);
+        // alert('User created successfully!'); // Success message
+        // navigate('/'); // Redirect to Login page (React Router)
         // Reset form fields
-        setFormData({  username: '', email: '', password: ''});
+        // setFormData({ username: '', email: '', password: '' });
       } else {
         alert('Error creating user'); // Error handling
       }
@@ -52,12 +54,15 @@ function SignUpForm() {
     }
   };
 
+  // Add handleModalClose function
+  const handleModalClose = () => {
+    setshowModel(false);
+  };
+
   return (
     <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      {/* JSX (HTML inside JS) */}
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        {/* Controlled Components - input values are tied to React state */}
         <input
           type="text"
           name="username"
@@ -84,10 +89,16 @@ function SignUpForm() {
           onChange={handleChange}
           required
         /><br /><br />
-
-        {/* Button triggers form submission */}
-        <button type="submit">Sign Up</button>
+        <button >Back</button>
+        <button type="submit" style={{ marginRight: "30px" }}>Sign Up</button>
       </form>
+      {showModel && (
+        <SuccessModal
+          message="You have successfully created your account!"
+          onClose={handleModalClose}
+        />
+      )}
+
     </div>
   );
 }

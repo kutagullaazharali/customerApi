@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; 
+import axios from "axios";
 
 export default function GetAllCustomers() {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1);
+  }
 
   const fetchCustomers = () => {
     setLoading(true);
@@ -30,7 +33,7 @@ export default function GetAllCustomers() {
   return (
     <div>
       <h2>All Customers</h2>
-      <button onClick={() => navigate("/loginComponent")}>Back</button>
+      <button onClick={handleBack}>Back</button>
       <button onClick={fetchCustomers}>Get Customers</button>
       <br /><br />
       {loading && <p>Loading...</p>}
